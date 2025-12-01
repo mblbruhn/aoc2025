@@ -15,8 +15,8 @@ function sub_from_state(s, x)
     if s - x == 0
         return 0, 0
     elseif s - x > 0
-        return s-x, 0
-    elseif s == 0 && s-x > -100
+        return s - x, 0
+    elseif s == 0 && s - x > -100
         return 100 + (s - x), 0
     elseif s - x > -100
         return 100 + (s - x), 1
@@ -52,5 +52,5 @@ end
 
 raw_input = readlines(".data/01.txt")
 p1, p2 = number_of_zeros(raw_input)
-println("Number of times state was zero: \t\t\t$p1 (Solution part 1)\n\
-Number of times the state passed through zero: \t\t$p2 (Solution part 2)")
+println("Number of times state was zero: \t\t\t\t$p1 (Solution part 1)\n\
+Number of times the state was zero or passed through zero: \t$p2 (Solution part 2)")
