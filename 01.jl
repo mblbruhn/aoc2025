@@ -1,5 +1,5 @@
 function add_to_state(s, x)
-    """This function returns the number of wrap-arounds."""
+    """Return the number of wrap-arounds for RH rotation."""
     if s + x == 100
         return 0, 0
     elseif s + x < 100
@@ -12,6 +12,7 @@ function add_to_state(s, x)
 end
 
 function sub_from_state(s, x)
+    """Return the number of wrap-arounds for LH rotation."""
     if s - x == 0
         return 0, 0
     elseif s - x > 0
@@ -42,7 +43,7 @@ function number_of_zeros(input)
         end
         n_zeros_p2 += n
 
-        if state % 100 == 0
+        if state == 0
             n_zeros_p1 += 1
             n_zeros_p2 += 1
         end
@@ -53,4 +54,4 @@ end
 raw_input = readlines(".data/01.txt")
 p1, p2 = number_of_zeros(raw_input)
 println("Number of times state was zero: \t\t\t\t$p1 (Solution part 1)\n\
-Number of times the state was zero or passed through zero: \t$p2 (Solution part 2)")
+            Number of times the state was zero or passed through zero: \t$p2 (Solution part 2)")
