@@ -1,3 +1,5 @@
+using BenchmarkTools
+
 function add_to_state(s, x)
     """Return the number of wrap-arounds for RH rotation."""
     if s + x == 100
@@ -49,7 +51,10 @@ function number_of_zeros(input)
     return n_zeros_p1, n_zeros_p2
 end
 
+
 raw_input = readlines(".data/01.txt")
 p1, p2 = number_of_zeros(raw_input)
 println("Number of times state was zero: \t\t\t\t$p1 (Solution part 1)\n\
             Number of times the state was zero or passed through zero: \t$p2 (Solution part 2)")
+
+@benchmark number_of_zeros(raw_input)
