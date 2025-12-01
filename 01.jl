@@ -13,9 +13,7 @@ end
 
 function sub_from_state(s, x)
     """Return the number of wrap-arounds for LH rotation."""
-    if s - x == 0
-        return 0, 0
-    elseif s - x > 0
+    if s - x >= 0
         return s - x, 0
     elseif s == 0 && s - x > -100
         return 100 + (s - x), 0
