@@ -1,4 +1,4 @@
-[Advent of Code](https://adventofcode.com/2025) 2025 in Julia.
+[Advent of Code](https://adventofcode.com/2025) 2025 in Julia!
 
 Day 1: 
 ```
@@ -8,3 +8,7 @@ Time  (mean ± σ):   209.162 μs ± 681.525 μs  ┊ GC (mean ± σ):  7.15% ±
 ```
 
 Day 2:
+```
+ Single result which took 9.991 s (4.99% GC) to evaluate,
+ with a memory estimate of 3.10 GiB, over 100627898 allocations.
+```
