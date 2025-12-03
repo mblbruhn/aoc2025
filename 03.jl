@@ -45,4 +45,5 @@ global cache = Dict()
 part1 = sum(find_highest_joltage.(input))
 part2 = sum(parse.(Int, optimize_joltage.(input, 12)))
 println("$part1, $part2")
-println(@benchmark (sum(parse.(Int, optimize_joltage.(input, 2))), sum(parse.(Int, optimize_joltage.(input, 12)))))
+println(@benchmark (sum(parse.(Int, optimize_joltage.(input, 2))), 
+    sum(parse.(Int, optimize_joltage.(input, 12)))))
