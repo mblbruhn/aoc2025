@@ -13,24 +13,17 @@ function find_highest_joltage(bank::String)
     return highest
 end
 
-function optimize_joltage(bank::String, to_select::Int)
+function optimize_joltage(bank::String, to_select::Int8)
     # some memoization, make the entire thing way faster
-    global cache
     return get!(cache, (bank, to_select)) do
         if to_select == 1
             return string(maximum(parse.(Int, split(bank, ""))))
-        end
-        if length(bank) == 1
-            return bank[1]
         end
         highest = 0
         end_idx = length(bank) - to_select + 1
         for ii = 1:end_idx
             nums = []
-            this_item = bank[ii]
-            push!(nums, this_item)
-            next_items = optimize_joltage(bank[ii+1:end], to_select - 1)
-            push!(nums, next_items)
+            push!(nums, bank[ii], optimize_joltage(bank[ii+1:end], to_select - 1))
             this_num = parse(Int, reduce(*, nums))
             if this_num > highest && length(string(this_num)) == to_select
                 highest = this_num
@@ -41,7 +34,7 @@ function optimize_joltage(bank::String, to_select::Int)
 end
 
 input = readlines(".data/03.txt")
-global cache = Dict()
+cache = Dict()
 println(@btime (sum(parse.(Int, optimize_joltage.(input, 2))), 
     sum(parse.(Int, optimize_joltage.(input, 12)))))
 part1 = sum(find_highest_joltage.(input))
