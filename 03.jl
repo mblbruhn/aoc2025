@@ -42,8 +42,8 @@ end
 
 input = readlines(".data/03.txt")
 global cache = Dict()
+println(@btime (sum(parse.(Int, optimize_joltage.(input, 2))), 
+    sum(parse.(Int, optimize_joltage.(input, 12)))))
 part1 = sum(find_highest_joltage.(input))
 part2 = sum(parse.(Int, optimize_joltage.(input, 12)))
 println("$part1, $part2")
-println(@benchmark (sum(parse.(Int, optimize_joltage.(input, 2))), 
-    sum(parse.(Int, optimize_joltage.(input, 12)))))
