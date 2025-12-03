@@ -12,3 +12,11 @@ Day 2:
  Single result which took 9.991 s (4.99% GC) to evaluate,
  with a memory estimate of 3.10 GiB, over 100627898 allocations.
 ```
+
+Day 3:
+```
+BenchmarkTools.Trial: 10000 samples with 1 evaluation per sample.
+ Range (min … max):  55.400 μs …  3.433 ms  ┊ GC (min … max): 0.00% … 0.00%
+ Time  (median):     57.800 μs              ┊ GC (median):    0.00%
+ Time  (mean ± σ):   65.867 μs ± 56.361 μs  ┊ GC (mean ± σ):  0.00% ± 0.00%
+```
