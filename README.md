@@ -23,8 +23,14 @@ BenchmarkTools.Trial: 10000 samples with 1 evaluation per sample.
 
 Day 4:
 ```
-BenchmarkTools.Trial: 30 samples with 1 evaluation per sample.
- Range (min … max):  149.276 ms … 331.865 ms  ┊ GC (min … max):  7.10% … 57.80%
- Time  (median):     163.424 ms               ┊ GC (median):    15.63%
- Time  (mean ± σ):   170.730 ms ±  31.990 ms  ┊ GC (mean ± σ):  17.68% ±  8.25%
+BenchmarkTools.Trial: 204 samples with 1 evaluation per sample.
+ Range (min … max):  18.849 ms … 49.010 ms  ┊ GC (min … max): 0.00% … 57.21%
+ Time  (median):     24.161 ms              ┊ GC (median):    0.00%
+ Time  (mean ± σ):   24.480 ms ±  4.137 ms  ┊ GC (mean ± σ):  6.28% ±  9.48%
+
+    ▃▂ ▃▃ ▁▁▄▁▁ █▅  ▁▂▃
+  ▅▇██▇██▅█████████████▄▆▆▆▇▁▅▃▆▄▃▄▁▁▁▁▁▁▁▁▁▁▃▁▃▁▁▁▁▃▁▁▁▁▁▁▁▃ ▄
+  18.8 ms         Histogram: frequency by time        41.2 ms <
+
+ Memory estimate: 8.43 MiB, allocs estimate: 60233.
 ```
