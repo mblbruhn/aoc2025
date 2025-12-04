@@ -34,6 +34,7 @@ end
 
 function part2(input)
     function remove_rolls!(coord)
+        """Removes a coordinate (containing a roll) if it has up to 4 neighbors"""
         neighboring = [(coord[1]+ii, coord[2]+jj) for ii = -1:1:1 for jj = -1:1:1]
         n_neighbors = 0
         for neighbor_coord in neighboring     
@@ -56,6 +57,8 @@ function part2(input)
             end
         end
     end
+
+    # Iteratively remove rolls until the coordinate set does not change anymore
     removed = 0
     coords2 = copy(coords)
     remove_rolls!.(coords)
