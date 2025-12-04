@@ -32,12 +32,12 @@ function part1(input)
     return movable
 end
 
-function neighbors(coord::Tuple{UInt8, UInt8})::Vector{Tuple{UInt8, UInt8}}
+function neighbors(coord::Tuple{UInt8,UInt8})::Vector{Tuple{UInt8,UInt8}}
     return [(coord[1] + ii, coord[2] + jj) for ii = -1:1:1 for jj = -1:1:1]
 end
 
 function part2(input)
-    function remove_rolls!(coord::Tuple{UInt8, UInt8})
+    function remove_rolls!(coord::Tuple{UInt8,UInt8})
         """Removes a coordinate (containing a roll) if it has up to 4 neighbors"""
         possible_neighbors = neighbors(coord)
         n_neighbors::UInt8 = 0
