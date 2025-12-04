@@ -13,7 +13,7 @@ function neighbor_map(in_map::Array{Int8})
     out::Array{Int8} = zeros(Int8, (rows, cols))
     pad_val::Int8 = 0
     padded = PaddedView(pad_val, in_map, (0:rows+1, 0:cols+1))
-    for ii = 1:rows 
+    for ii = 1:rows
         for jj = 1:cols
             out[ii, jj] = sum(padded[ii-1:ii+1, jj-1:jj+1])
         end
@@ -32,26 +32,30 @@ function part1(input)
     return movable
 end
 
+function neighbors(coord::Tuple{UInt8, UInt8})::Vector{Tuple{UInt8, UInt8}}
+    return [(coord[1] + ii, coord[2] + jj) for ii = -1:1:1 for jj = -1:1:1]
+end
+
 function part2(input)
-    function remove_rolls!(coord)
+    function remove_rolls!(coord::Tuple{UInt8, UInt8})
         """Removes a coordinate (containing a roll) if it has up to 4 neighbors"""
-        neighboring = [(coord[1]+ii, coord[2]+jj) for ii = -1:1:1 for jj = -1:1:1]
-        n_neighbors = 0
-        for neighbor_coord in neighboring     
+        possible_neighbors = neighbors(coord)
+        n_neighbors::UInt8 = 0
+        for neighbor_coord in possible_neighbors
             if neighbor_coord in coords
                 n_neighbors += 1
             end
         end
         if n_neighbors < 5
-            pop!(coords2, coord)
+            pop!(temp, coord)
         end
     end
 
     # create set of coordinates with paper rolls 
-    coords = Set()
+    coords::Set{Tuple{UInt8,UInt8}} = Set()
     mat = reduce(hcat, split.(input, ""))
-    for jj = 1:mat.size[1]
-        for ii = 1:mat.size[2]
+    for ii = 1:mat.size[1]
+        for jj = 1:mat.size[2]
             if mat[ii, jj] == "@"
                 push!(coords, (ii, jj))
             end
@@ -60,14 +64,14 @@ function part2(input)
 
     # Iteratively remove rolls until the coordinate set does not change anymore
     removed = 0
-    coords2 = copy(coords)
+    temp = copy(coords)
     remove_rolls!.(coords)
-    removed += length(coords) - length(coords2)
-    while coords != coords2
-        coords = copy(coords2)
-        coords2 = copy(coords)
+    removed += length(coords) - length(temp)
+    while coords != temp
+        coords = copy(temp)
+        temp = copy(coords)
         remove_rolls!.(coords)
-        removed += length(coords) - length(coords2)
+        removed += length(coords) - length(temp)
     end
     return removed
 end
