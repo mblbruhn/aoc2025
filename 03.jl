@@ -13,7 +13,7 @@ function find_highest_joltage(bank::String)
     return highest
 end
 
-function optimize_joltage(bank::String, to_select::Int8)
+function optimize_joltage(bank::String, to_select)
     # some memoization, make the entire thing way faster
     return get!(cache, (bank, to_select)) do
         if to_select == 1
