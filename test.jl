@@ -1,27 +1,80 @@
-using PaddedViews
 using BenchmarkTools
 
 
-function solvep2(input::Vector{String})::Int64
-    mat::Matrix{String} = reduce(hcat, split.(input, ""))
-    d::Dict{String, Bool} = Dict("." => false, "@" => true)
-    mat_b::Matrix{Bool} = collect(map(x -> d[x], mat))
-    mat_b_padded = PaddedView(false, mat_b, (0:mat.size[1]+1, 0:mat.size[2]+1))
-    initial = sum(mat_b)
-    temp::Int64 = 0
-    while temp != sum(mat_b)
-        temp = sum(mat_b)
-        for row in axes(mat_b, 1)
-            for col in axes(mat_b, 2)
-                if sum(@inbounds @view mat_b_padded[row-1:row+1, col-1:col+1]) < 5
-                    parent(mat_b_padded)[row, col] *= false
+function part1()
+    mystring = "3-5
+10-14
+16-20
+12-18
+
+1
+5
+8
+11
+17
+32"
+
+    mystring = read(".data/05.txt", String)
+
+    sep = "\r\n"
+
+    IDs = parse.(Int64, split(split(mystring, sep * sep)[2], sep))
+    ranges = [parse.(Int64, split(range, "-")) for range in split(split(mystring, sep * sep)[1], sep)]
+    #ranges_full = collect(Iterators.flatten([collect(range[1]:range[2]) for range in ranges]))
+
+
+    summ = 0
+    for ID in IDs
+        for range in ranges
+            if (range[1] <= ID <= range[2])
+                summ += 1
+                break
+            end
+        end
+    end
+    # println(summ)
+end
+
+function part2()
+    mystring = "3-5
+10-14
+16-20
+12-18
+
+1
+5
+8
+11
+17
+32"
+
+    mystring = read(".data/05.txt", String)
+    sep = "\r\n"
+
+    IDs = parse.(Int64, split(split(mystring, sep * sep)[2], sep))
+    ranges = [parse.(Int64, split(range, "-")) for range in split(split(mystring, sep * sep)[1], sep)]
+    #make into array, probably faster
+    ranges = reduce(vcat, transpose.(ranges))
+
+    #Some ranges have overlap with over ranges. 
+    #To solve this, we need to compare every range with every suceeding range and shorten it accordingly
+    NN = size(ranges)[1]
+    for ii = 1:NN
+        for jj = 1:NN
+            #if ranges[jj,1] <= ranges[ii, 1] <= ranges[jj,2]  #if the start of current range is inside another range
+            #   ranges[ii,1] = ranges[jj,1] #set start point to other start point
+            #end
+            if jj != ii
+                if ranges[jj, 1] <= ranges[ii, 2] <= ranges[jj, 2]  #same thing for end of range
+                    ranges[ii, 2] = ranges[jj, 1] - 1 #
                 end
             end
         end
     end
-    return initial - temp
+    #ranges
+    s = sum(ranges[:, 2] - ranges[:, 1]) + NN
+    # println(s)
 end
 
-input::Vector{String} = readlines(".data/04.txt")
-@benchmark res = solvep2(input)
-# println(res)
+
+@benchmark (part2(), part1())

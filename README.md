@@ -2,39 +2,43 @@
 
 Day 1: 
 ```
-Range (min … max):  126.800 μs …  42.889 ms  ┊ GC (min … max): 0.00% … 0.00%
-Time  (median):     141.500 μs               ┊ GC (median):    0.00%
-Time  (mean ± σ):   209.162 μs ± 681.525 μs  ┊ GC (mean ± σ):  7.15% ± 3.25%
+BenchmarkTools.Trial: 10000 samples with 1 evaluation per sample.
+ Range (min … max):  126.500 μs …  31.684 ms  ┊ GC (min … max): 0.00% … 0.00%
+ Time  (median):     135.200 μs               ┊ GC (median):    0.00%
+ Time  (mean ± σ):   179.488 μs ± 450.875 μs  ┊ GC (mean ± σ):  6.26% ± 3.88%
+ Memory estimate: 133.44 KiB, allocs estimate: 4270.
 ```
 
 Day 2:
 ```
- Single result which took 9.991 s (4.99% GC) to evaluate,
- with a memory estimate of 3.10 GiB, over 100627898 allocations.
+BenchmarkTools.Trial: 1 sample with 1 evaluation per sample.
+ Single result which took 5.510 s (5.39% GC) to evaluate,
+ with a memory estimate of 3.29 GiB, over 107258161 allocations.
 ```
 
 Day 3:
 ```
-BenchmarkTools.Trial: 10000 samples with 1 evaluation per sample.
- Range (min … max):  55.400 μs …  3.433 ms  ┊ GC (min … max): 0.00% … 0.00%
- Time  (median):     57.800 μs              ┊ GC (median):    0.00%
- Time  (mean ± σ):   65.867 μs ± 56.361 μs  ┊ GC (mean ± σ):  0.00% ± 0.00%
+BenchmarkTools.Trial: 2 samples with 1 evaluation per sample.
+ Range (min … max):  2.864 s …    3.054 s  ┊ GC (min … max): 8.50% … 7.36%
+ Time  (median):     2.959 s               ┊ GC (median):    7.92%
+ Time  (mean ± σ):   2.959 s ± 134.126 ms  ┊ GC (mean ± σ):  7.92% ± 0.81%
+ Memory estimate: 2.31 GiB, allocs estimate: 65297562.
 ```
 
 Day 4:
 ```
-BenchmarkTools.Trial: 204 samples with 1 evaluation per sample.
- Range (min … max):  18.849 ms … 49.010 ms  ┊ GC (min … max): 0.00% … 57.21%
- Time  (median):     24.161 ms              ┊ GC (median):    0.00%
- Time  (mean ± σ):   24.480 ms ±  4.137 ms  ┊ GC (mean ± σ):  6.28% ±  9.48%
+BenchmarkTools.Trial: 397 samples with 1 evaluation per sample.
+ Range (min … max):  10.371 ms … 28.309 ms  ┊ GC (min … max): 0.00% … 54.95%
+ Time  (median):     12.089 ms              ┊ GC (median):    0.00%
+ Time  (mean ± σ):   12.582 ms ±  2.279 ms  ┊ GC (mean ± σ):  6.34% ±  8.17%
  Memory estimate: 8.43 MiB, allocs estimate: 60233.
 ```
 
 Day 04
 ```
 BenchmarkTools.Trial: 10000 samples with 1 evaluation per sample.
- Range (min … max):  268.800 μs …  18.480 ms  ┊ GC (min … max): 0.00% … 96.50%
- Time  (median):     329.300 μs               ┊ GC (median):    0.00%
- Time  (mean ± σ):   373.024 μs ± 320.528 μs  ┊ GC (mean ± σ):  1.84% ±  2.31%
+ Range (min … max):  163.900 μs …  19.129 ms  ┊ GC (min … max): 0.00% … 98.76%
+ Time  (median):     171.200 μs               ┊ GC (median):    0.00%
+ Time  (mean ± σ):   206.197 μs ± 297.919 μs  ┊ GC (mean ± σ):  1.87% ±  1.94%
  Memory estimate: 57.78 KiB, allocs estimate: 724.
 ```
