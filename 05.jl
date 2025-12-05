@@ -41,6 +41,32 @@ function part2(input)
     return covering
 end
 
+function part12(input)
+    ranges, ids = parse_input(input)
+    n_fresh = 0
+    for id in ids
+        for (lo, hi) in ranges
+            if lo <= id <= hi
+                n_fresh += 1
+                break
+            end
+        end
+    end
+    
+    sort!(ranges, by=x -> x[1])
+    covering = 0
+    curr_max = 0
+    for (lo, hi) in ranges
+        lo = lo > curr_max ? lo : curr_max
+        if hi >= lo
+            covering += hi - lo + 1
+            curr_max = hi + 1
+        end
+    end
+    return n_fresh, covering
+end
+
 input = readlines(".data/05.txt")
-println("Part 1: $(part1(input)); Part 2: $(part2(input))")
-@benchmark (part1(input), part2(input))
+p1, p2 = part12(input)
+println("Part 1: $p1; Part 2: $p2")
+@benchmark (part12(input))
