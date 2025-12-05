@@ -2,15 +2,13 @@ using BenchmarkTools
 
 function parse_input(input::Vector{String})::Tuple{Vector{Vector{Int}},Vector{Int}}
     split_idx::Int = findall(x -> x == "", input)[1]
-    ranges_out::Vector{Vector{Int}} = (input[1:split_idx-1]
-                                       |>
-                                       ranges -> split.(ranges, "-")
-                                                 |>
+    ranges_out::Vector{Vector{Int}} = (input[1:split_idx-1] |>
+                                       ranges -> split.(ranges, "-") |>
                                                  r -> map(x -> parse.(Int, x), r)
     )
-    ids_out::Vector{Int} = (input[split_idx+1:end]
-                            |>
-                            ids -> parse.(Int, ids))
+    ids_out::Vector{Int} = (input[split_idx+1:end] |>
+                            ids -> parse.(Int, ids)
+    )
     return ranges_out, ids_out
 end
 
