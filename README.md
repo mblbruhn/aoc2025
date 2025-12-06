@@ -16,16 +16,16 @@ BenchmarkTools.Trial: 1 sample with 1 evaluation per sample.
  with a memory estimate of 3.29 GiB, over 107258161 allocations.
 ```
 
-Day 3:
+Day 03:
 ```
 BenchmarkTools.Trial: 2 samples with 1 evaluation per sample.
- Range (min … max):  2.864 s …    3.054 s  ┊ GC (min … max): 8.50% … 7.36%
- Time  (median):     2.959 s               ┊ GC (median):    7.92%
- Time  (mean ± σ):   2.959 s ± 134.126 ms  ┊ GC (mean ± σ):  7.92% ± 0.81%
- Memory estimate: 2.31 GiB, allocs estimate: 65297562.
+ Range (min … max):  2.931 s …  2.945 s  ┊ GC (min … max): 8.87% … 7.59%
+ Time  (median):     2.938 s             ┊ GC (median):    8.23%
+ Time  (mean ± σ):   2.938 s ± 9.584 ms  ┊ GC (mean ± σ):  8.23% ± 0.91%
+ Memory estimate: 2.31 GiB, allocs estimate: 65297762.
 ```
 
-Day 4:
+Day 04:
 ```
 BenchmarkTools.Trial: 397 samples with 1 evaluation per sample.
  Range (min … max):  10.371 ms … 28.309 ms  ┊ GC (min … max): 0.00% … 54.95%
@@ -34,7 +34,7 @@ BenchmarkTools.Trial: 397 samples with 1 evaluation per sample.
  Memory estimate: 8.43 MiB, allocs estimate: 60233.
 ```
 
-Day 04
+Day 05
 ```
 BenchmarkTools.Trial: 10000 samples with 1 evaluation per sample.
  Range (min … max):  163.900 μs …  19.129 ms  ┊ GC (min … max): 0.00% … 98.76%
@@ -43,7 +43,7 @@ BenchmarkTools.Trial: 10000 samples with 1 evaluation per sample.
  Memory estimate: 57.78 KiB, allocs estimate: 724.
 ```
 
-Day 05
+Day 06
 ```
 BenchmarkTools.Trial: 7463 samples with 1 evaluation per sample.
  Range (min … max):  424.400 μs …  28.846 ms  ┊ GC (min … max):  0.00% … 98.09%

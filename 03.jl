@@ -41,9 +41,9 @@ end
 
 input = readlines(".data/03.txt")
 
-# println((sum(parse.(Int, optimize_joltage.(input, 2))), 
-#     sum(parse.(Int, optimize_joltage.(input, 12)))))
-# part1 = sum(find_highest_joltage.(input))
-# part2 = sum(parse.(Int, wrap_optimize_joltage.(input, 12)))
+part1 = sum(find_highest_joltage.(input))
+part2 = sum(parse.(Int, wrap_optimize_joltage.(input, 12)))
 # println("$part1, $part2")
-@benchmark (wrap_optimize_joltage.(input, 12), wrap_optimize_joltage.(input, 2))
+@benchmark (wrap_optimize_joltage.(input, 12) .|> x -> parse(Int, x) |> sum,
+    wrap_optimize_joltage.(input, 2) .|> x -> parse(Int, x) |> sum
+)
