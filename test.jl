@@ -1,80 +1,42 @@
-using BenchmarkTools
+function read_puzzle(file)
+    s = read(file, String) |> strip
+    fresh, avail = split(s, "\n\n")
+    fresh = map(split(fresh, "\n")) do s
+        a, b = parse.(Int, split(s, "-"))
+        a:b
+    end
+    avail = map(split(avail, "\n")) do s
+        parse(Int, s)
+    end
+    fresh, avail
+end
 
-
-function part1()
-    mystring = "3-5
-10-14
-16-20
-12-18
-
-1
-5
-8
-11
-17
-32"
-
-    mystring = read(".data/05.txt", String)
-
-    sep = "\r\n"
-
-    IDs = parse.(Int64, split(split(mystring, sep * sep)[2], sep))
-    ranges = [parse.(Int64, split(range, "-")) for range in split(split(mystring, sep * sep)[1], sep)]
-    #ranges_full = collect(Iterators.flatten([collect(range[1]:range[2]) for range in ranges]))
-
-
-    summ = 0
-    for ID in IDs
-        for range in ranges
-            if (range[1] <= ID <= range[2])
-                summ += 1
+function compute(fresh, avail)
+    part1 = 0
+    for a in avail
+        for f in fresh
+            if a in f
+                part1 += 1
                 break
             end
         end
     end
-    # println(summ)
-end
-
-function part2()
-    mystring = "3-5
-10-14
-16-20
-12-18
-
-1
-5
-8
-11
-17
-32"
-
-    mystring = read(".data/05.txt", String)
-    sep = "\r\n"
-
-    IDs = parse.(Int64, split(split(mystring, sep * sep)[2], sep))
-    ranges = [parse.(Int64, split(range, "-")) for range in split(split(mystring, sep * sep)[1], sep)]
-    #make into array, probably faster
-    ranges = reduce(vcat, transpose.(ranges))
-
-    #Some ranges have overlap with over ranges. 
-    #To solve this, we need to compare every range with every suceeding range and shorten it accordingly
-    NN = size(ranges)[1]
-    for ii = 1:NN
-        for jj = 1:NN
-            #if ranges[jj,1] <= ranges[ii, 1] <= ranges[jj,2]  #if the start of current range is inside another range
-            #   ranges[ii,1] = ranges[jj,1] #set start point to other start point
-            #end
-            if jj != ii
-                if ranges[jj, 1] <= ranges[ii, 2] <= ranges[jj, 2]  #same thing for end of range
-                    ranges[ii, 2] = ranges[jj, 1] - 1 #
-                end
-            end
+    # println(part1)
+    part2 = 0
+    sort!(fresh, lt=(x, y) -> x.start < y.start)
+    i = 1
+    while i <= length(fresh)
+        start = fresh[i].start
+        finish = fresh[i].stop
+        i = i+1
+        while i <= length(fresh) && fresh[i].start <= finish
+            finish = max(finish, fresh[i].stop)
+            i += 1
         end
+        part2 += finish - start + 1
     end
-    #ranges
-    s = sum(ranges[:, 2] - ranges[:, 1]) + NN
-    # println(s)
+    # println(part2)
 end
 
-
-@benchmark (part2(), part1())
+fresh, avail = read_puzzle(".data/05.txt")
+compute(fresh, avail)

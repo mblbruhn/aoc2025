@@ -42,3 +42,12 @@ BenchmarkTools.Trial: 10000 samples with 1 evaluation per sample.
  Time  (mean ± σ):   206.197 μs ± 297.919 μs  ┊ GC (mean ± σ):  1.87% ±  1.94%
  Memory estimate: 57.78 KiB, allocs estimate: 724.
 ```
+
+Day 05
+```
+BenchmarkTools.Trial: 7463 samples with 1 evaluation per sample.
+ Range (min … max):  424.400 μs …  28.846 ms  ┊ GC (min … max):  0.00% … 98.09%
+ Time  (median):     457.400 μs               ┊ GC (median):     0.00%
+ Time  (mean ± σ):   665.915 μs ± 974.548 μs  ┊ GC (mean ± σ):  16.96% ± 11.87%
+ Memory estimate: 971.01 KiB, allocs estimate: 14552.
+```
