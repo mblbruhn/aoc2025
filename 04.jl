@@ -99,4 +99,3 @@ end
 input::Vector{String} = readlines(".data/04.txt")
 println("Part 1: $(part1(input)); Part 2: $(solvep2_fast(input))")
 @benchmark (part1(input), solvep2_fast(input))
-
