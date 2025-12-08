@@ -1,4 +1,5 @@
 using BenchmarkTools
+using DataStructures
 
 
 struct Coord3D
@@ -11,51 +12,45 @@ function r(p1::Coord3D, p2::Coord3D)::Int
     return (p1.x - p2.x)^2 + (p1.y - p2.y)^2 + (p1.z - p2.z)^2
 end
 
-@inline function which_circuits_do_these_points_belong_to(circuits::Vector{Set{Coord3D}}, p1::Coord3D, p2::Coord3D)
-    idx_p1 = 0
-    idx_p2 = 0
-    for ii in eachindex(circuits)
-        if p1 in circuits[ii]
-            idx_p1 = ii
-        end
-        if p2 in circuits[ii]
-            idx_p2 = ii
-        end
-        if idx_p1 > 0 && idx_p2 > 0
-            return idx_p1, idx_p2
-        end
-    end
-end
-
-function main(input::Vector{String})::Tuple{Int, Int}
-    coords = input .|> (
-                 line -> line |>
-                         x -> split(x, ",") |>
-                              x -> parse.(Int, x) |>
-                                   x -> Coord3D(x...)
-             )
-    distances = Vector{Pair{Tuple{Coord3D, Coord3D}, Int}}()
+function main(input::Vector{String})::Tuple{Int,Int}
+    coords::Vector{Coord3D} = input .|> (
+        line -> line |>
+                x -> split(x, ",") |>
+                     x -> parse.(Int, x) |>
+                          x -> Coord3D(x...)
+    )
     max_idx = length(input)
+    distances = Vector{Pair{Tuple{Coord3D, Coord3D},Int}}(undef, max_idx*(max_idx-1)÷2) # pre-allocating for speed based on gauss summation formula
+    lin_idx = 1
     for ii in 1:max_idx
         for jj = ii+1:max_idx
-            push!(distances, (coords[ii], coords[jj]) => r(coords[ii], coords[jj]))
+            distances[lin_idx] = (coords[ii], coords[jj]) => r(coords[ii], coords[jj])
+            lin_idx +=1
         end
     end
-    sort!(distances, by=x->x[2]; alg=QuickSort)
-    
+    sort!(distances, by=x -> x[2]; alg=QuickSort) # quicksort is unstable (doesn't matter) and a bit faster
+
     part1 = 0
-    circuits = Vector{Set{Coord3D}}([Set([c]) for c in coords])
+    circuits = DisjointSet{Coord3D}(coords)
     for ii in eachindex(distances)
         ((p1, p2), _) = distances[ii]
-        cidx_p1, cidx_p2 = which_circuits_do_these_points_belong_to(circuits, p1, p2)
-        if cidx_p1 != cidx_p2
-            union!(circuits[cidx_p1], circuits[cidx_p2])
-            deleteat!(circuits, cidx_p2)
+        if !in_same_set(circuits, p1, p2)
+            union!(circuits, p1, p2)
         end
         if ii == n 
-            part1 = reduce(*, sort(length.(circuits), rev=true)[1:3])
+            # no native `number_of_elems_per_group` function is provided by DataStructures.jl
+            # this implementation counts (for each root, ie the bucket), how many coords are in the bucket
+            # using a DisjointSet is 10 ms faster than my own implementation of Vector{Set{Coord3D}}: 65 ms -> 54 ms
+            # previous implementation can be found in earlier commit 
+            counts = Dict{Coord3D, Int}((cc, 0) for cc in coords)
+            for cc in coords # iterate over the Coord3D structs
+                r = find_root!(circuits, cc) # this returns the root of the group of the coord
+                # for this root, increase the count by one
+                counts[r] = get(counts, r, 0) + 1
+            end
+            part1 = reduce(*, sort(collect(values(counts)), rev=true)[1:3])
         end
-        if length(circuits) == 1
+        if num_groups(circuits) == 1
             part2 = p1.x*p2.x
             return part1, part2
         end

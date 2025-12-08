@@ -1,6 +1,7 @@
 [deps]
 BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 DSP = "717857b8-e6f2-59f4-9121-6e50c889abd2"
+DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
 LRUCache = "8ac3fa9e-de4c-5943-b1dc-09c6b5f20637"
 PaddedViews = "5432bcbf-9aad-5242-b902-cca2824c8663"
 TensorCast = "02d47bb6-7ce6-556a-be16-bb1710789e2b"

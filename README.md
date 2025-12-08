@@ -63,9 +63,9 @@ BenchmarkTools.Trial: 2036 samples with 1 evaluation per sample.
 
 Day 08
 ```
-BenchmarkTools.Trial: 62 samples with 1 evaluation per sample.
- Range (min … max):  58.102 ms … 348.400 ms  ┊ GC (min … max):  0.00% … 77.05%
- Time  (median):     68.576 ms               ┊ GC (median):     5.27%
- Time  (mean ± σ):   81.406 ms ±  51.045 ms  ┊ GC (mean ± σ):  18.08% ± 16.31%
- Memory estimate: 68.68 MiB, allocs estimate: 14709.
+BenchmarkTools.Trial: 111 samples with 1 evaluation per sample.
+ Range (min … max):  38.750 ms … 60.810 ms  ┊ GC (min … max): 0.00% … 4.13%
+ Time  (median):     43.787 ms              ┊ GC (median):    4.33%
+ Time  (mean ± σ):   45.176 ms ±  4.106 ms  ┊ GC (mean ± σ):  4.36% ± 3.06%
+ Memory estimate: 27.16 MiB, allocs estimate: 8023.
 ```
