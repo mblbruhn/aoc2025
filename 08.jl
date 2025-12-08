@@ -1,15 +1,17 @@
 using BenchmarkTools
+
+
 struct Coord3D
-    z::Int
-    y::Int
     x::Int
+    y::Int
+    z::Int
 end
 
-function r(p1::Coord3D, p2::Coord3D)::Float64
-    return sqrt((p1.x - p2.x)^2 + (p1.y - p2.y)^2 + (p1.z - p2.z)^2)
+function r(p1::Coord3D, p2::Coord3D)::Int
+    return (p1.x - p2.x)^2 + (p1.y - p2.y)^2 + (p1.z - p2.z)^2
 end
 
-function which_circuits_do_these_points_belong_to(circuits, p1, p2)
+@inline function which_circuits_do_these_points_belong_to(circuits::Vector{Set{Coord3D}}, p1::Coord3D, p2::Coord3D)
     idx_p1 = 0
     idx_p2 = 0
     for ii in eachindex(circuits)
@@ -19,28 +21,30 @@ function which_circuits_do_these_points_belong_to(circuits, p1, p2)
         if p2 in circuits[ii]
             idx_p2 = ii
         end
+        if idx_p1 > 0 && idx_p2 > 0
+            return idx_p1, idx_p2
+        end
     end
-    return idx_p1, idx_p2
 end
 
-function main(input)
+function main(input::Vector{String})::Tuple{Int, Int}
     coords = input .|> (
                  line -> line |>
                          x -> split(x, ",") |>
                               x -> parse.(Int, x) |>
                                    x -> Coord3D(x...)
              )
-    distances = Vector{Pair{Tuple{Coord3D, Coord3D}, Float64}}()
+    distances = Vector{Pair{Tuple{Coord3D, Coord3D}, Int}}()
     max_idx = length(input)
     for ii in 1:max_idx
         for jj = ii+1:max_idx
             push!(distances, (coords[ii], coords[jj]) => r(coords[ii], coords[jj]))
         end
     end
-    sort!(distances, by=x->x[2])
+    sort!(distances, by=x->x[2]; alg=QuickSort)
     
     part1 = 0
-    circuits = Vector{Set}([Set([c]) for c in coords])
+    circuits = Vector{Set{Coord3D}}([Set([c]) for c in coords])
     for ii in eachindex(distances)
         ((p1, p2), _) = distances[ii]
         cidx_p1, cidx_p2 = which_circuits_do_these_points_belong_to(circuits, p1, p2)
@@ -52,12 +56,11 @@ function main(input)
             part1 = reduce(*, sort(length.(circuits), rev=true)[1:3])
         end
         if length(circuits) == 1
-            part2 = p1.z*p2.z
+            part2 = p1.x*p2.x
             return part1, part2
         end
     end
 end
-
 
 
 fname = ".data/08.txt"
