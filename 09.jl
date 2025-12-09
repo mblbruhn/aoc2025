@@ -5,6 +5,7 @@ using BenchmarkTools
 end
 
 function contour(coords)
+    """Return a set of the coordinates of the closed outer contour of the polygon."""
     outer = Set{Tuple{Int,Int}}()
     for ii = 1:length(coords)-1
         if coords[ii][1] == coords[ii+1][1]
@@ -38,18 +39,20 @@ function contour(coords)
 end
 
 function rectangle_is_within_bounds(outer::Set{Tuple{Int,Int}}, a::Vector{Int}, b::Vector{Int})
-    # It is (is it?) sufficient for a rectangle to have all four points within bounds to also
-    # have all other points in bounds (I think this should at least apply to all convex boundaries)
+    # Works by checking for intersection between the sets of outer boundary points and the offset-by-one
+    # boundary points of the current rectangle. Terribly inefficient, but it actually works
     (x1, y1), (x2, y2) = a, b
     x_hi, x_lo = x1 > x2 ? (x1, x2) : (x2, x1)
     y_hi, y_lo = y1 > y2 ? (y1, y2) : (y2, y1)
+    # subtract 1 from the coordinates to prevent set intersections between the boundary of the rectangle
+    # and the outer boundary if they are on top of each other
     coord_list = [[x_lo + 1, y_lo + 1], [x_hi - 1, y_lo + 1], [x_hi - 1, y_hi - 1], [x_lo + 1, y_hi - 1]]
     inner_cnt_rect = contour(coord_list)
 
     return length(intersect(outer, inner_cnt_rect)) == 0
 end
 
-function part1(input::Vector{String})
+function main(input::Vector{String})
     coord_len = length(input)
     coords = input .|>
              x -> split(x, ",") |>
@@ -76,4 +79,4 @@ end
 
 
 input = readlines(".data/09.txt")
-k = part1(input)
+main(input)
