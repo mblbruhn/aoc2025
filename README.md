@@ -1,6 +1,6 @@
 [Advent of Code](https://adventofcode.com/2025) 2025 in Julia!
 
-Day 1: 
+### Day 1: 
 ```
 BenchmarkTools.Trial: 10000 samples with 1 evaluation per sample.
  Range (min … max):  126.500 μs …  31.684 ms  ┊ GC (min … max): 0.00% … 0.00%
@@ -9,14 +9,14 @@ BenchmarkTools.Trial: 10000 samples with 1 evaluation per sample.
  Memory estimate: 133.44 KiB, allocs estimate: 4270.
 ```
 
-Day 2:
+### Day 2:
 ```
 BenchmarkTools.Trial: 1 sample with 1 evaluation per sample.
  Single result which took 5.510 s (5.39% GC) to evaluate,
  with a memory estimate of 3.29 GiB, over 107258161 allocations.
 ```
 
-Day 03:
+### Day 03:
 ```
 BenchmarkTools.Trial: 2 samples with 1 evaluation per sample.
  Range (min … max):  2.931 s …  2.945 s  ┊ GC (min … max): 8.87% … 7.59%
@@ -25,7 +25,7 @@ BenchmarkTools.Trial: 2 samples with 1 evaluation per sample.
  Memory estimate: 2.31 GiB, allocs estimate: 65297762.
 ```
 
-Day 04:
+### Day 04:
 ```
 BenchmarkTools.Trial: 397 samples with 1 evaluation per sample.
  Range (min … max):  10.371 ms … 28.309 ms  ┊ GC (min … max): 0.00% … 54.95%
@@ -34,7 +34,7 @@ BenchmarkTools.Trial: 397 samples with 1 evaluation per sample.
  Memory estimate: 8.43 MiB, allocs estimate: 60233.
 ```
 
-Day 05
+### Day 05
 ```
 BenchmarkTools.Trial: 10000 samples with 1 evaluation per sample.
  Range (min … max):  163.900 μs …  19.129 ms  ┊ GC (min … max): 0.00% … 98.76%
@@ -43,7 +43,7 @@ BenchmarkTools.Trial: 10000 samples with 1 evaluation per sample.
  Memory estimate: 57.78 KiB, allocs estimate: 724.
 ```
 
-Day 06
+### Day 06
 ```
 BenchmarkTools.Trial: 7463 samples with 1 evaluation per sample.
  Range (min … max):  424.400 μs …  28.846 ms  ┊ GC (min … max):  0.00% … 98.09%
@@ -52,7 +52,7 @@ BenchmarkTools.Trial: 7463 samples with 1 evaluation per sample.
  Memory estimate: 971.01 KiB, allocs estimate: 14552.
 ```
 
-Day 07
+### Day 07
 ```
 BenchmarkTools.Trial: 2036 samples with 1 evaluation per sample.
  Range (min … max):  1.643 ms … 20.035 ms  ┊ GC (min … max):  0.00% … 90.14%
@@ -61,7 +61,7 @@ BenchmarkTools.Trial: 2036 samples with 1 evaluation per sample.
  Memory estimate: 4.13 MiB, allocs estimate: 30755.
 ```
 
-Day 08
+### Day 08
 ```
 BenchmarkTools.Trial: 111 samples with 1 evaluation per sample.
  Range (min … max):  38.750 ms … 60.810 ms  ┊ GC (min … max): 0.00% … 4.13%
@@ -69,3 +69,7 @@ BenchmarkTools.Trial: 111 samples with 1 evaluation per sample.
  Time  (mean ± σ):   45.176 ms ±  4.106 ms  ┊ GC (mean ± σ):  4.36% ± 3.06%
  Memory estimate: 27.16 MiB, allocs estimate: 8023.
 ```
+
+### Day 09
+Longer than I care to measure. Currently, still waiting for part 2. Here is an image instead:
+![](assets/09.png)
