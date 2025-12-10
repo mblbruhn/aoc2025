@@ -73,7 +73,7 @@ function gauss_elim(M::BitMatrix, t::BitVector)
 
         for rr in 1:rows
             if rr != pivot_row && A[rr, col]
-                A[rr, :] .⊻= A[pivot_row, :]
+                A[rr, :] .⊻= A[pivot_row, :] # xor (since it's boolean logic)
             end
         end
         pivot_row += 1
