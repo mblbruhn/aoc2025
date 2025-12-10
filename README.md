@@ -73,3 +73,10 @@ BenchmarkTools.Trial: 111 samples with 1 evaluation per sample.
 ### Day 09
 Longer than I care to measure. Currently, still waiting for part 2. Here is an image instead:
 ![](assets/09.png)
+
+### Day 10
+BenchmarkTools.Trial: 6 samples with 1 evaluation per sample.
+ Range (min … max):  835.626 ms …    1.306 s  ┊ GC (min … max): 0.00% … 0.00%
+ Time  (median):     894.003 ms               ┊ GC (median):    0.00%
+ Time  (mean ± σ):   973.315 ms ± 179.565 ms  ┊ GC (mean ± σ):  0.00% ± 0.00%
+ Memory estimate: 15.22 MiB, allocs estimate: 515654.
