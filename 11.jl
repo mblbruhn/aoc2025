@@ -24,7 +24,7 @@ function traverse_graph(graph::Dict{String,Vector{String}}, curr_node::String, t
 end
 
 function p2(graph)
-    # The graph has unidirectional edges: keys are unique and data can only flow in one direction
+    # The graph has unidirectional edges: keys are unique and data can only flow in one direction (acyclic)
     # this means that the paths are either fft => dac or dac => fft, not both
     #   (since reversibility would make the graph cyclic, which it isn't)
     # after knowing in which order the data flows through (fft, dac), the problem can be reformulated:
@@ -32,7 +32,6 @@ function p2(graph)
     # then multiplying the answers
 
     dac_fft = traverse_graph(graph, "dac", "fft")
-    fft_dac = traverse_graph(graph, "fft", "dac")
 
     if dac_fft > 0 # Whether any connection between dac => fft have been found
         return (traverse_graph(graph, "svr", "dac") *
@@ -40,7 +39,7 @@ function p2(graph)
                 traverse_graph(graph, "fft", "out"))
     else
         return (traverse_graph(graph, "svr", "fft") *
-                fft_dac *
+                traverse_graph(graph, "fft", "dac") *
                 traverse_graph(graph, "dac", "out"))
     end
 end
@@ -48,7 +47,7 @@ end
 
 function main(input)
     graph = input2graph(input)
-    global cache = Dict{Tuple{String,String},Int}()
+    global cache = Dict{Tuple{String,String}, Int}()
     n_paths_p1 = traverse_graph(graph, "you", "out")
     n_paths_p2 = p2(graph)
     return n_paths_p1, n_paths_p2
