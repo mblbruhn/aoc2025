@@ -75,15 +75,28 @@ Longer than I care to measure. Currently, still waiting for part 2. Here is an i
 ![](assets/09.png)
 
 ### Day 10
+```
 BenchmarkTools.Trial: 6 samples with 1 evaluation per sample.
  Range (min … max):  835.626 ms …    1.306 s  ┊ GC (min … max): 0.00% … 0.00%
  Time  (median):     894.003 ms               ┊ GC (median):    0.00%
  Time  (mean ± σ):   973.315 ms ± 179.565 ms  ┊ GC (mean ± σ):  0.00% ± 0.00%
  Memory estimate: 15.22 MiB, allocs estimate: 515654.
+```
 
 ### Day 11
+```
 BenchmarkTools.Trial: 7547 samples with 1 evaluation per sample.
  Range (min … max):  470.600 μs …  27.867 ms  ┊ GC (min … max):  0.00% … 95.40%
  Time  (median):     496.500 μs               ┊ GC (median):     0.00%
  Time  (mean ± σ):   660.655 μs ± 779.076 μs  ┊ GC (mean ± σ):  12.11% ± 10.92%
  Memory estimate: 906.64 KiB, allocs estimate: 15391.
+```
+
+### Day 12
+```
+BenchmarkTools.Trial: 5060 samples with 1 evaluation per sample.
+ Range (min … max):  618.400 μs … 24.143 ms  ┊ GC (min … max):  0.00% … 96.21%
+ Time  (median):     665.600 μs              ┊ GC (median):     0.00%
+ Time  (mean ± σ):   984.659 μs ±  1.080 ms  ┊ GC (mean ± σ):  16.68% ± 15.48%
+ Memory estimate: 1.55 MiB, allocs estimate: 22100.
+```
